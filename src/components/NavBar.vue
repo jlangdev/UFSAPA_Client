@@ -1,74 +1,23 @@
 <template>
-  <nav
-    class="navbar"
-    role="navigation"
-    aria-label="main navigation"
-  >
-    <div class="navbar-brand">
-      <a
-        class="navbar-item"
-        href="https://bulma.io"
-      >
-        <img
-          src="http://www.freelogovectors.net/wp-content/uploads/2018/08/uf-university-of-florida.png"
-          width="50"
-          height="28"
-        >
-      </a>
-
-      <a
-        role="button"
-        class="navbar-burger burger"
-        aria-label="menu"
-        aria-expanded="false"
-        data-target="navbarBasicExample"
-      >
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-
-    <div
-      id="navbarBasicExample"
-      class="navbar-menu"
-    >
-      <div class="navbar-start">
-        <a class="navbar-item">
-          <router-link to="/events">Events</router-link>
-        </a>
-
-        <a class="navbar-item">
-          <router-link to="/about">About</router-link>
-        </a>
-        <a class="navbar-item">
-          <router-link to="/members">Members</router-link>
-        </a>
-
-        <a class="navbar-item">
-          <router-link to="/members">Board Members</router-link>
-        </a>
-
-        <a class="navbar-item">
-          <router-link to="/contact">Contact Us</router-link>
-        </a>
-
-      </div>
-
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-info">
-              <router-link to="/register" class="has-text-white	"><strong>Register</strong></router-link>
-            </a>
-            <a class="button is-light">
-              <router-link to="/login" class="has-text-info"> <strong>Log in</strong></router-link>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
+  <v-toolbar app>
+    <v-toolbar-side-icon></v-toolbar-side-icon>
+    <v-toolbar-title>UFSAPA</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-toolbar-items class="hidden-sm-and-down">
+      <v-btn flat>
+        <router-link to="/events" tag="li">Events</router-link>
+      </v-btn>
+      <v-btn flat>
+        <router-link to="/members" tag="li">Members</router-link>
+      </v-btn>
+      <v-btn flat>
+        <router-link to="/board" tag="li">Board Members</router-link>
+      </v-btn>
+      <v-btn flat>
+        <router-link to="/about" tag="li">About</router-link>
+      </v-btn>
+    </v-toolbar-items>
+  </v-toolbar>
 </template>
 
 <script>

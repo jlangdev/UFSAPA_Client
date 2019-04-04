@@ -1,18 +1,25 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <NavBar></NavBar>
       <!--<router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>-->
+    <v-content>
+    <v-container fluid>
     <router-view/>
-  </div>
+    </v-container>
+    </v-content>
+    <Footer></Footer>
+  </v-app>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
+import Footer from '@/components/Footer.vue'
 
 export default {
   components: {
-    NavBar
+    NavBar,
+    Footer
   }
 }
 </script>
@@ -22,7 +29,15 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
+}
+Footer {
+ position: absolute;
+ bottom: 0;
+ width: 100%;
+}
+
+nav-bar{
+  margin-bottom: 60px;
 }
 </style>

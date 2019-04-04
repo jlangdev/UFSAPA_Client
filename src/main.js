@@ -1,12 +1,25 @@
 import Vue from 'vue'
-import './plugins/axios'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
-import Buefy from 'buefy'
-import './assets/scss/app.scss'
 import store from './store'
 
-Vue.use(Buefy)
+axios.interceptors.request.use(function (config) {
+  if(localStorage.token){
+  const token = localStorage.token;
+  config.headers.Authorization =  `Token ${token}`;
+  }
+  return config;
+});
+axios.defaults.baseURL = 'http://localhost:8000/api/'
+
+
+
+Vue.use(VueAxios, axios)
+
+
 
 Vue.config.productionTip = false
 
