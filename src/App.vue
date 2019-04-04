@@ -4,7 +4,7 @@
       <!--<router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>-->
     <v-content>
-    <v-container fluid>
+    <v-container>
     <router-view/>
     </v-container>
     </v-content>
@@ -37,7 +37,5 @@ Footer {
  width: 100%;
 }
 
-nav-bar{
-  margin-bottom: 60px;
-}
+
 </style>

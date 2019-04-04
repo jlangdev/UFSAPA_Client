@@ -2,6 +2,7 @@
   
 
 <v-container fluid grid-list-md>
+
     <v-data-iterator
       :items="profiles"
       :rows-per-page-items="rowsPerPageItems"
@@ -22,6 +23,7 @@
     :last_name="props.item.last_name"
     :office_hours="props.item.office_hours"
     :image="props.item.image"
+    :id="props.item.id"
     ></MemberCard>
         </v-flex>
         </template>

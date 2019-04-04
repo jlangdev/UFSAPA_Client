@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Events from './views/Events.vue'
 import Members from './views/Members.vue'
+import MemberDetails from './views/MemberDetails.vue'
 import Login from './components/Login.vue'
 import Register from './components/Register.vue'
 
@@ -15,8 +16,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'events',
+      component: Events
     },
     {
       path: '/about',
@@ -46,5 +47,9 @@ export default new Router({
       name: 'members',
       component: Members
     },
+    {
+      path:'/members/:name/:id',
+      component: MemberDetails
+    }
   ]
 })

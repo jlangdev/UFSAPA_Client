@@ -1,5 +1,6 @@
 <template>
   <v-footer app
+    absolute
     dark
     height="auto"
   >
