@@ -1,31 +1,53 @@
 <template>
+  <v-card>
+    <v-img :src="getImage()"></v-img>
+    <v-card-title primary-title>
+      <div>
+        <h3 class="headline mb-0">{{name}}</h3>
+        <div>{{description}}</div>
+      </div>
+    </v-card-title>
 
-      <v-card>
-     <v-card-title primary-title>
-          <div>
-            <h3 class="headline mb-0">{{name}}</h3>
-            <div> {{description}}</div>
-          </div>
-        </v-card-title>
-
-        <v-card-actions>
-          <v-btn flat color="orange">RSVP</v-btn>
-        </v-card-actions>
-      </v-card>
-
+    <v-card-actions>
+      <div class="text-xs-center">
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn color="primary" dark v-on="on">RSVP</v-btn>
+          </template>
+          <v-list>
+            <v-list-tile v-for="(item, index) in items" :key="index" @click="sendAttendence()">
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            </v-list-tile>
+          </v-list>
+        </v-menu>
+      </div>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>
-
 export default {
-  name: 'eventcard',
-  props:{
+  name: "eventcard",
+  props: {
     name: String,
     date: Date,
     description: String,
     category: String,
     point_value: Number,
     is_mandatory: Boolean
+  },
+  data() {
+    return {
+      items: [{ title: "Going" }, { title: "Not Going" }]
+    };
+  },
+  methods: {
+    sendAttendence: function() {},
+    getImage: function() {
+      let index = Math.floor(Math.random() * Math.floor(5)) + 1;
+      index = index.toString();
+      return require(`../assets/meeting${index}.jpg`);
+    }
   }
-}
+};
 </script>

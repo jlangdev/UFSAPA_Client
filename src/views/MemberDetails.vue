@@ -1,6 +1,6 @@
 <template>
-  <v-layout fluid>
-    <v-flex xs6 lg6 ma-2>
+  <v-layout>
+    <v-flex xs12 sm12 lg6 ma-2>
      
       <v-card>
           
@@ -15,7 +15,7 @@
         
       </v-card>
     </v-flex>
-    <v-flex sx6 lg6 ma-2>
+    <v-flex xs12 sm12 lg6 ma-2>
       <h1 class="display-3 font-weight-light"> About {{data.first_name}}</h1>
       <div class="title font-weight-light">
         What did you study and why?

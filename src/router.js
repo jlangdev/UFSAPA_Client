@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import ExampleView from './views/ExampleView.vue'
 import Events from './views/Events.vue'
 import Members from './views/Members.vue'
 import MemberDetails from './views/MemberDetails.vue'
@@ -50,6 +50,11 @@ export default new Router({
     {
       path:'/members/:name/:id',
       component: MemberDetails
+    },
+    {
+    path:'/example',
+    name: 'example',
+    component: ExampleView
     }
   ]
 })
