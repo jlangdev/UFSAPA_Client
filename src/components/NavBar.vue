@@ -4,7 +4,7 @@
     <v-toolbar-title>UFSAPA</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat>
+      <v-btn v-if="isLoggedIn" flat>
         <router-link to="/events" tag="li">Events</router-link>
       </v-btn>
       <v-btn flat>
@@ -16,6 +16,16 @@
       <v-btn flat>
         <router-link to="/about" tag="li">About</router-link>
       </v-btn>
+      <v-btn v-if="isLoggedIn" flat>
+        <router-link to="/about" tag="li">My Profile</router-link>
+      </v-btn>
+      <v-btn v-if="!isLoggedIn" flat>
+        <router-link to="/about" tag="li">Login</router-link>
+      </v-btn>
+      <v-btn v-if="!isLoggedIn" flat>
+        <router-link to="/about" tag="li">Register</router-link>
+      </v-btn>
+
     </v-toolbar-items>
   </v-toolbar>
 </template>
@@ -25,6 +35,16 @@ export default {
   name: "NavBar",
   props: {
     msg: String
+  },
+  data(){
+    return{
+      isLoggedIn: false
+    }
+  },
+  mounted(){
+    if(localStorage.token){
+      this.isLoggedIn = true
+    }
   }
 };
 </script>
