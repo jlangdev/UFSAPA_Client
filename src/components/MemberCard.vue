@@ -21,7 +21,7 @@
 <script>
 
 export default {
-  name: 'eventcard',
+  name: 'memberCard',
   components:{
   },
   props:{

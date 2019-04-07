@@ -19,7 +19,8 @@
         >
     <EventCard 
     :name="props.item.name"
-    :description="props.item.description"></EventCard>
+    :description="props.item.description"
+    :id="props.item.id"></EventCard>
         </v-flex>
         </template>
         </v-data-iterator>

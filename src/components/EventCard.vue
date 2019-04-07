@@ -15,8 +15,8 @@
             <v-btn color="primary" dark v-on="on">RSVP</v-btn>
           </template>
           <v-list>
-            <v-list-tile v-for="(item, index) in items" :key="index" @click="sendAttendence()">
-              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            <v-list-tile v-for="(item, index) in items" :key="index">
+              <v-list-tile-title @click="sendAttendence(item.title)">{{ item.title }}</v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-menu>
@@ -34,7 +34,8 @@ export default {
     description: String,
     category: String,
     point_value: Number,
-    is_mandatory: Boolean
+    is_mandatory: Boolean,
+    id: Number
   },
   data() {
     return {
@@ -42,7 +43,17 @@ export default {
     };
   },
   methods: {
-    sendAttendence: function() {},
+    sendAttendence: function(status) {
+      let attendance = {
+        user: localStorage.user,
+        event: this.id.toString(),
+        status: status
+      }
+      console.log(attendance)
+      this.axios.post("/attendance/", attendance).then(res=>{
+        console.log(res)
+      })
+    },
     getImage: function() {
       let index = Math.floor(Math.random() * Math.floor(5)) + 1;
       index = index.toString();

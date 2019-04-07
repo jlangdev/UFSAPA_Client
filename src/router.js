@@ -5,6 +5,8 @@ import Events from './views/Events.vue'
 import Members from './views/Members.vue'
 import MemberDetails from './views/MemberDetails.vue'
 import Dev from './views/_Dev.vue'
+import MyProfile from './views/MyProfile.vue'
+
 import Login from './components/Login.vue'
 import Register from './components/Register.vue'
 
@@ -33,6 +35,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: MyProfile
     },
     {
       path: '/register',

@@ -40,6 +40,7 @@
 </template>
 
 <script>
+
 export default {
   name: "Login",
   props: {
@@ -61,7 +62,7 @@ export default {
         })
         .then(function(response) {
           localStorage.setItem('user',JSON.stringify(response.data.user_id));
-          localStorage.sertItem('profile', JSON.stringify(response.datta.profile_id));
+          localStorage.setItem('profile', JSON.stringify(response.data.profile_id));
           localStorage.setItem('token',response.data.token);
           instance.$router.push('events')
         })
