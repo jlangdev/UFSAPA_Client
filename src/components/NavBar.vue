@@ -17,7 +17,7 @@
         <router-link to="/about" tag="li">About</router-link>
       </v-btn>
       <v-btn v-if="isLoggedIn" flat>
-        <router-link to="/about" tag="li">My Profile</router-link>
+        <router-link to="/profile" tag="li">My Profile</router-link>
       </v-btn>
       <v-btn v-if="!isLoggedIn" flat>
         <router-link to="/about" tag="li">Login</router-link>

@@ -15,7 +15,7 @@
           xs12
           sm6
           md4
-          lg3
+          lg2
         >
     <EventCard 
     :name="props.item.name"
