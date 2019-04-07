@@ -60,7 +60,8 @@ export default {
           password: this.password
         })
         .then(function(response) {
-          localStorage.setItem('user',JSON.stringify(response.data.user_id))
+          localStorage.setItem('user',JSON.stringify(response.data.user_id));
+          localStorage.sertItem('profile', JSON.stringify(response.datta.profile_id));
           localStorage.setItem('token',response.data.token);
           instance.$router.push('events')
         })
