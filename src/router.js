@@ -4,8 +4,10 @@ import ExampleView from './views/ExampleView.vue'
 import Events from './views/Events.vue'
 import Members from './views/Members.vue'
 import MemberDetails from './views/MemberDetails.vue'
+import Dev from './views/_Dev.vue'
 import Login from './components/Login.vue'
 import Register from './components/Register.vue'
+
 
 
 Vue.use(Router)
@@ -55,6 +57,11 @@ export default new Router({
     path:'/example',
     name: 'example',
     component: ExampleView
+    },
+    {
+    path:'/dev',
+    name: 'dev',
+    component: Dev
     }
   ]
 })
