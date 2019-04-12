@@ -1,7 +1,7 @@
 <template>
   <v-toolbar app>
     <v-toolbar-side-icon></v-toolbar-side-icon>
-    <v-toolbar-title>UFSAPA</v-toolbar-title>
+    <v-toolbar-title class = "title">UFSAPA</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn v-if="isLoggedIn" flat>
@@ -50,4 +50,13 @@ export default {
 </script>
 
 <style>
+.hidden-sm-and-down{
+  font-family: Nunito;
+  /*font-weight: bold;*/
+
+}
+
+.title{
+  font-family: Nunito;
+}
 </style>

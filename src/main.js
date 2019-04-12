@@ -18,6 +18,7 @@ axios.defaults.baseURL = 'http://localhost:8000/api/'
 
 
 Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios)
 
 
 
