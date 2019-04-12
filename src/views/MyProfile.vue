@@ -13,7 +13,9 @@
         <h2 class="font-weight-medium">Name: {{profileData.first_name}} {{profileData.last_name}}</h2>
         <h2 class="font-weight-medium">Birthday: {{profileData.birthday}}</h2>
         <h2 class="font-weight-medium">Total Points: {{profileData.points}}</h2>
-        <v-btn color="info">Edit Profile</v-btn>
+        <v-btn color="info">
+          <router-link to="/editprofile" tag="v-btn">Edit Profile</router-link>
+        </v-btn>
       </v-flex>
       <!--User Info-->
     </v-layout>
@@ -21,8 +23,8 @@
       <v-flex xs12 sm12 md5 ml-3 mb-2>
         <p class="display-1">Personal Information</p>
         <v-card hover class="font-weight-regular">
-          <h3>Major 1: {{profileData.major1}}</h3>
-          <h3>Major 2: {{profileData.major1}}</h3>
+          <h3>Major: {{profileData.major1}}</h3>
+          <h3>Minor: {{profileData.minor1}}</h3>
           <h3>Inducted: {{profileData.inducted}}</h3>
           <h3>Years Lefts: {{profileData.years_left}}</h3>
           <h3>Graduation Semester: {{profileData.grad_sem}}</h3>
@@ -40,9 +42,37 @@
       </v-flex>
     </v-layout>
     <v-layout>
-      <v-flex xs12 sm12 md5 ml-3>
-        <h1>Events Attending {{allEventsData}}</h1>
-        <h1>All events {{eventsData}}</h1>
+      <v-flex xs6 sm6 md4 ml-3>
+        <p class="display-1">Events Attending</p>
+
+        <div v-for="(value, key) in allEventsData" :key="key.id">
+          <div v-if="allEventsData[key].id === eventsData.event">
+            <div v-if="allEventsData[key].is_active === true">
+              <v-card color="#577284" class="white--text">
+                <v-card-title primary-title>
+                  <div>
+                    <div class="headline">{{allEventsData[key].name}}</div>
+                    <br>
+                    <span>Descripion: {{allEventsData[key].description}}</span>
+                    <br>
+                    <span>Date: {{allEventsData[key].date}}</span>
+                    <br>
+                    <span>Point Value: {{allEventsData[key].point_value}}</span>
+                    <br>
+                    <span>Mandatory: {{allEventsData[key].is_mandatory}}</span>
+                  </div>
+                </v-card-title>
+                <v-card-actions>
+                  <v-btn color="primary" dark>
+                    <router-link to="/passcode" tag="v-btn">Enter Passcode</router-link>
+                  </v-btn>
+                  <v-btn color="error" dark>Not Attending</v-btn>
+                </v-card-actions>
+              </v-card>
+            </div>
+          </div>
+        </div>
+        <!-- <h1>All events {{eventsData}}</h1>-->
       </v-flex>
     </v-layout>
   </v-container>
