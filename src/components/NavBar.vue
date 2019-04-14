@@ -19,8 +19,8 @@
       <v-btn v-if="isLoggedIn" flat>
         <router-link to="/profile" tag="li">My Profile</router-link>
       </v-btn>
-      <v-btn v-if="isLoggedIn" flat>
-        <router-link to="/profile" tag="li">Log Out</router-link>
+      <v-btn v-if="isLoggedIn" @click='logOut()' flat>
+        <router-link to="/login" tag="li">Log Out</router-link>
       </v-btn>
  
 
@@ -45,6 +45,13 @@ export default {
   data(){
     return{
       isLoggedIn: false,
+    }
+  },
+  methods:{
+    logOut: function(){
+      delete localStorage.user
+      delete localStorage.profile
+      delete localStorage.token
     }
   },
   mounted(){
