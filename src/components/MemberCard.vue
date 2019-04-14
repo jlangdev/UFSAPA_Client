@@ -9,7 +9,8 @@
         ></v-img>
      <v-card-title primary-title>
           <div>
-            <h3 class="headline mb-0">{{first_name}} {{last_name}}</h3>
+            <h3 class="headline mb-0">{{first_name}}</h3>
+            <h3  class="headline mb-0">{{last_name}}</h3>
             <div>Office hours: {{office_hours}}</div>
           </div>
         </v-card-title>
