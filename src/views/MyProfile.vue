@@ -4,7 +4,7 @@
   <v-container>
     <!--Img-->
     <v-layout row>
-      <v-flex md2 xs12 sm12>
+      <v-flex md4 xs12 sm12>
         <v-avatar size="200">
           <img src="../assets/jlang.jpg" alt="profile pic" class="grey lighten-5">
         </v-avatar>
