@@ -55,7 +55,7 @@
                     <br>
                     <span>Descripion: {{allEventsData[key].description}}</span>
                     <br>
-                    <span>Date: {{allEventsData[key].date}}</span>
+                    <span>Date: {{allEventsData[key].date.toLocaleString()}}</span>
                     <br>
                     <span>Point Value: {{allEventsData[key].point_value}}</span>
                     <br>
@@ -64,7 +64,7 @@
                 </v-card-title>
                 <v-card-actions>
                   <v-btn color="primary" dark>
-                    <router-link to="/passcode" tag="v-btn">Enter Passcode</router-link>
+                    <router-link :to='getLink(allEventsData[key].id)' tag="v-btn">Enter Passcode</router-link>
                   </v-btn>
                   <v-btn color="error" dark>Not Attending</v-btn>
                 </v-card-actions>
@@ -115,7 +115,10 @@ export default {
     };
   },
   methods: {
-    enableEdit: function() {}
+    enableEdit: function() {},
+    getLink: function(id){
+      return `/passcode/${id}`
+    }
   },
   mounted() {
     let instance = this;
@@ -128,7 +131,7 @@ export default {
     this.axios.get(`/users/${userId}/`).then(res => {
       instance.userData = res.data;
     });
-    this.axios.get(`/attendance/${userId}/`).then(res => {
+    this.axios.get(`/attendance/user/${userId}`).then(res => {
       instance.eventsData = res.data;
     });
     this.axios.get(`/events/`).then(res => {

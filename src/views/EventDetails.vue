@@ -28,8 +28,8 @@
     let id = this.$route.params.id;
     console.log(id);
     this.axios.get(`/events/${id}`).then(res => {
-      instance.data = res.data[id-1];
-      console.log(instance.data[id-1]);
+      instance.data = res.data;
+      console.log(instance.data[id]);
     });
   }
 };

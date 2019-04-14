@@ -63,6 +63,11 @@ export default new Router({
       component: Events
     },
     {
+      path: "/passcode/:id/",
+      name: "passcode",
+      component: Passcode
+    },
+    {
       path: "/members",
       name: "members",
       component: Members
@@ -81,10 +86,6 @@ export default new Router({
       name: "dev",
       component: Dev
     },
-    {
-      path: "/passcode",
-      name: "passcode",
-      component: Passcode
-    }
+    
   ]
 });

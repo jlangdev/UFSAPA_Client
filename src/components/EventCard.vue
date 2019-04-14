@@ -1,16 +1,13 @@
 <template>
   <v-hover>
-    <v-card 
-    @click="getDetails()"
-     slot-scope="{ hover }"
-    :class="`elevation-${hover ? 8 : 2} clickable`">
+    <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 8 : 2} clickable`">
       <v-img :src="getImage()"></v-img>
       <v-card-title primary-title>
         <div>
           <h3 class="headline mb-0">{{name}}</h3>
           <div>{{description}}</div>
         </div>
-      </v-card-title> 
+      </v-card-title>
 
       <v-card-actions>
         <div class="text-xs-center">
@@ -25,6 +22,7 @@
             </v-list>
           </v-menu>
         </div>
+        <v-btn color="secondary" dark @click="getDetails()">Details</v-btn>
       </v-card-actions>
     </v-card>
   </v-hover>
@@ -53,22 +51,22 @@ export default {
         user: localStorage.user,
         event: this.id.toString(),
         status: status
-      }
-      console.log(attendance)
-      this.axios.post("/attendance/", attendance).then(res=>{
-        console.log(res)
-      })
+      };
+      console.log(attendance);
+      this.axios.post("/attendance/", attendance).then(res => {
+        console.log(res);
+      });
     },
     getImage: function() {
       let index = Math.floor(Math.random() * Math.floor(5)) + 1;
       index = index.toString();
       return require(`../assets/meeting1.jpg`);
     },
-    getDetails: function(){
-      let name = this.name
+    getDetails: function() {
+      let name = this.name;
       this.$router.push({
         path: `/events/${name}/${this.id}`
-    })
+      });
     }
   }
 };
