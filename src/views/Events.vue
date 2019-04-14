@@ -50,7 +50,7 @@ export default {
 
   },
   mounted(){
-    let instance = this
+    let instance = this;
     this.axios
     .get('/events/')
     .then((res) => {

@@ -19,6 +19,12 @@
       <v-btn v-if="isLoggedIn" flat>
         <router-link to="/profile" tag="li">My Profile</router-link>
       </v-btn>
+      <v-btn v-if="isLoggedIn" flat>
+        <router-link to="/profile" tag="li">Log Out</router-link>
+      </v-btn>
+ 
+
+
       <v-btn v-if="!isLoggedIn" flat>
         <router-link to="/about" tag="li">Login</router-link>
       </v-btn>
@@ -38,7 +44,7 @@ export default {
   },
   data(){
     return{
-      isLoggedIn: false
+      isLoggedIn: false,
     }
   },
   mounted(){

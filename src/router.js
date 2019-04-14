@@ -10,6 +10,7 @@ import EditProfile from "./views/EditProfile.vue";
 import Passcode from "./views/Passcode.vue";
 import Login from "./components/Login.vue";
 import Register from "./components/Register.vue";
+import EventDetails from "./views/EventDetails.vue";
 
 Vue.use(Router);
 
@@ -21,6 +22,11 @@ export default new Router({
       path: "/",
       name: "events",
       component: Events
+    },
+    {
+      path: "/events/:name/:id",
+      name:"eventDetails",
+      component: EventDetails
     },
     {
       path: "/about",
