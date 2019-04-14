@@ -3,6 +3,7 @@ import Router from "vue-router";
 import ExampleView from "./views/ExampleView.vue";
 import Events from "./views/Events.vue";
 import Members from "./views/Members.vue";
+import Board from "./views/Board.vue";
 import MemberDetails from "./views/MemberDetails.vue";
 import Dev from "./views/_Dev.vue";
 import MyProfile from "./views/MyProfile.vue";
@@ -72,6 +73,12 @@ export default new Router({
       name: "members",
       component: Members
     },
+    {
+      path: "/board",
+      name: "board",
+      component: Board
+    },
+
     {
       path: "/members/:name/:id",
       component: MemberDetails
