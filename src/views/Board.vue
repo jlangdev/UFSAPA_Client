@@ -2,8 +2,9 @@
   
 
 <v-container fluid grid-list-md>
+
     <v-data-iterator
-      :items="events"
+      :items="profiles"
       :rows-per-page-items="rowsPerPageItems"
       :pagination.sync="pagination"
       content-tag="v-layout"
@@ -17,10 +18,13 @@
           md4
           lg2
         >
-    <EventCard 
-    :name="props.item.name"
-    :description="props.item.description"
-    :id="props.item.id"></EventCard>
+    <MemberCard 
+    :first_name="props.item.first_name"
+    :last_name="props.item.last_name"
+    :office_hours="props.item.office_hours"
+    :image="props.item.image"
+    :id="props.item.id"
+    ></MemberCard>
         </v-flex>
         </template>
         </v-data-iterator>
@@ -30,31 +34,31 @@
 
 <script>
 // @ is an alias to /src
-import EventCard from '@/components/EventCard.vue'
+import MemberCard from '@/components/MemberCard.vue'
 
 export default {
-  name: 'events',
+  name: 'members',
   components: {
-    EventCard
+    MemberCard
   },
   data(){
     return{
-      rowsPerPageItems: [4, 8, 12],
+      rowsPerPageItems: [12, 24, 48],
       pagination: {
-        rowsPerPage: 4
+        rowsPerPage: 12
       },
-      events: [1,2,3,4,5]
+      profiles: [1,2,3,4,5]
     }
   },
   methods:{
 
   },
   mounted(){
-    let instance = this;
+    let instance = this
     this.axios
-    .get('/events/')
+    .get('/profiles/')
     .then((res) => {
-      instance.events = res.data
+      instance.profiles = res.data.filter(profile => profile.image && profile.is_board_member )
     })
   }
 }

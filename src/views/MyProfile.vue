@@ -45,32 +45,29 @@
       <v-flex xs6 sm6 md4 ml-3 grid-list-s>
         <p class="display-1">Events Attending</p>
 
-        <div v-for="(value, key) in allEventsData" :key="key.id">
-          <div v-if="allEventsData[key].id === eventsData.event">
-            <div v-if="allEventsData[key].is_active === true">
-              <v-card color="#577284" class="white--text">
-                <v-card-title primary-title>
-                  <div>
-                    <div class="headline">{{allEventsData[key].name}}</div>
-                    <br>
-                    <span>Descripion: {{allEventsData[key].description}}</span>
-                    <br>
-                    <span>Date: {{allEventsData[key].date}}</span>
-                    <br>
-                    <span>Point Value: {{allEventsData[key].point_value}}</span>
-                    <br>
-                    <span>Mandatory: {{allEventsData[key].is_mandatory}}</span>
-                  </div>
-                </v-card-title>
-
-                <v-card-actions>
-                  <v-btn color="primary" dark>
-                    <router-link to="/passcode" tag="v-btn">Enter Passcode</router-link>
-                  </v-btn>
-                  <v-btn color="error" dark>Not Attending</v-btn>
-                </v-card-actions>
-              </v-card>
-            </div>
+        <div v-for="(event, key) in myEvents" :key="key">
+          <div v-if="event.is_active === true">
+            <v-card color="#577284" class="white--text">
+              <v-card-title primary-title>
+                <div>
+                  <div class="headline">{{event.name}}</div>
+                  <br>
+                  <span>Descripion: {{event.description}}</span>
+                  <br>
+                  <span>Date: {{event.date.toLocaleString()}}</span>
+                  <br>
+                  <span>Point Value: {{event.point_value}}</span>
+                  <br>
+                  <span>Mandatory: {{event.is_mandatory}}</span>
+                </div>
+              </v-card-title>
+              <v-card-actions>
+                <v-btn color="primary" dark>
+                  <router-link :to="getLink(event.id)" tag="v-btn">Enter Passcode</router-link>
+                </v-btn>
+                <v-btn color="error" dark>Not Attending</v-btn>
+              </v-card-actions>
+            </v-card>
           </div>
         </div>
         <!-- <h1>All events {{eventsData}}</h1>-->
@@ -88,8 +85,9 @@ export default {
     return {
       profileData: {},
       userData: {},
-      eventsData: {},
-      allEventsData: {},
+      attendance: {},
+      events: {},
+      myEvents: [],
       map: {
         id: "id",
         first_name: "First Name",
@@ -116,7 +114,10 @@ export default {
     };
   },
   methods: {
-    enableEdit: function() {}
+    enableEdit: function() {},
+    getLink: function(id) {
+      return `/passcode/${id}`;
+    }
   },
   mounted() {
     let instance = this;
@@ -129,11 +130,19 @@ export default {
     this.axios.get(`/users/${userId}/`).then(res => {
       instance.userData = res.data;
     });
-    this.axios.get(`/attendance/${userId}/`).then(res => {
-      instance.eventsData = res.data;
-    });
-    this.axios.get(`/events/`).then(res => {
-      instance.allEventsData = res.data;
+    this.axios.get(`/attendance/user/${userId}/`).then(res => {
+      instance.attendance = res.data;
+      instance.axios.get(`/events/`).then(res => {
+        instance.events = res.data;
+        for (let i = 0; i < instance.events.length; i++) {
+          for (let j = 0; j < instance.attendance.length; j++) {
+            if (instance.events[i].id == instance.attendance[j].event) {
+              instance.myEvents.push(instance.events[i]);
+              continue;
+            }
+          }
+        }
+      });
     });
   }
 };

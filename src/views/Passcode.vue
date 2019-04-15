@@ -1,5 +1,3 @@
-
-
 <template>
   <v-container>
     <!--Img-->
@@ -16,7 +14,7 @@
         <div class="text-xs-center">
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-text-field
-              v-model="name"
+              v-model="code"
               :counter="10"
               :rules="nameRules"
               label="Enter Code"
@@ -31,11 +29,6 @@
   </v-container>
 </template>
 
-
-
-
-  
-
 <script>
 export default {
   name: "myProfile",
@@ -46,51 +39,29 @@ export default {
       userData: {},
       eventsData: {},
       allEventsData: {},
-      map: {
-        id: "id",
-        first_name: "First Name",
-        last_name: "Last Name",
-        major1: "Major 1",
-        major2: "Major 2",
-        minor1: "Minor 1",
-        minor2: "Minor 2",
-        grad_sem: "Grad Semester ",
-        years_left: "Years Left",
-        inducted: "Inducted",
-        birthday: "Birthday",
-        image: "image",
-        office_hours: "office hours",
-        points: "Points",
-        question1: "Question 1",
-        question2: "Question 2",
-        question3: "Question 3",
-        question4: "Question 4",
-        question5: "Question 5",
-        user: "User"
-      },
-      editToggle: false
+      editToggle: false,
+      code: '',
+      eventId: '',
+      userId: '',
     };
   },
   methods: {
-    enableEdit: function() {}
-  },
-  mounted() {
-    let instance = this;
-    let profileId = localStorage.profile;
+    enableEdit: function() {},
+    validate: function(){
     let userId = localStorage.user;
+    let eventId = this.$route.params.id;
+    let passcode = this.code;
 
-    this.axios.get(`/profiles/${profileId}/`).then(res => {
-      instance.profileData = res.data;
+    let model = new FormData();
+    model.append('user_id', userId);
+    model.append('event_id', eventId);
+    model.append('passcode', passcode)
+
+    this.axios.post(`/passcode/`, model).then(res => {
+      console.log(res)
     });
-    this.axios.get(`/users/${userId}/`).then(res => {
-      instance.userData = res.data;
-    });
-    this.axios.get(`/attendance/${userId}/`).then(res => {
-      instance.eventsData = res.data;
-    });
-    this.axios.get(`/events/`).then(res => {
-      instance.allEventsData = res.data;
-    });
-  }
+    }
+  },
+  
 };
 </script>
