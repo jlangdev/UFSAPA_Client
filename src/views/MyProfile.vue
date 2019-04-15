@@ -42,7 +42,7 @@
       </v-flex>
     </v-layout>
     <v-layout>
-      <v-flex xs6 sm6 md4 ml-3>
+      <v-flex xs6 sm6 md4 ml-3 grid-list-s>
         <p class="display-1">Events Attending</p>
 
         <div v-for="(value, key) in allEventsData" :key="key.id">
@@ -62,6 +62,7 @@
                     <span>Mandatory: {{allEventsData[key].is_mandatory}}</span>
                   </div>
                 </v-card-title>
+
                 <v-card-actions>
                   <v-btn color="primary" dark>
                     <router-link to="/passcode" tag="v-btn">Enter Passcode</router-link>
