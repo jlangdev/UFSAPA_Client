@@ -10,6 +10,7 @@
 </template>
 
 <script>
+  import moment from 'moment'
   export default {
   name: "EventDetails",
   props: {
@@ -29,6 +30,7 @@
     console.log(id);
     this.axios.get(`/events/${id}`).then(res => {
       instance.data = res.data;
+      instance.data.date = moment(res.data.date).format('MM/DD/YYYY h:mm a');
       console.log(instance.data[id]);
     });
   }

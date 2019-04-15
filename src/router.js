@@ -12,6 +12,7 @@ import Passcode from "./views/Passcode.vue";
 import Login from "./components/Login.vue";
 import Register from "./components/Register.vue";
 import EventDetails from "./views/EventDetails.vue";
+import Calendar from "./views/Calendar.vue";
 
 Vue.use(Router);
 
@@ -92,7 +93,12 @@ export default new Router({
       path: "/dev",
       name: "dev",
       component: Dev
-    },
+    },   
+    {
+      path: "/calendar",
+      name: "calendar",
+      component: Calendar
+    } 
     
   ]
 });

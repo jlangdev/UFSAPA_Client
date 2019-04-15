@@ -2,6 +2,12 @@
   
 
 <v-container fluid grid-list-md>
+  <v-btn 
+  @click="getCalendar()"
+  id = "calendarView" 
+  color = "blue darken-4" 
+  class="white--text">Calendar View</v-btn>
+
     <v-data-iterator
       :items="events"
       :rows-per-page-items="rowsPerPageItems"
@@ -47,7 +53,12 @@ export default {
     }
   },
   methods:{
-
+    getCalendar: function(){
+      let name = this.name
+      this.$router.push({
+        path: `/calendar`
+    })
+    }
   },
   mounted(){
     let instance = this;
@@ -59,3 +70,9 @@ export default {
   }
 }
 </script>
+
+<style type="">
+  #calendarView{
+    font-family: Nunito;
+  }
+</style>
