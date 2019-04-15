@@ -42,7 +42,7 @@
       </v-flex>
     </v-layout>
     <v-layout>
-      <v-flex xs6 sm6 md4 ml-3>
+      <v-flex xs6 sm6 md4 ml-3 grid-list-s>
         <p class="display-1">Events Attending</p>
 
         <div v-for="(event, key) in myEvents" :key="key">
