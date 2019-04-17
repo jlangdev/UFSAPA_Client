@@ -1,29 +1,41 @@
 <template>
   <v-hover>
     <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 8 : 2} clickable`">
-      <v-img :src="getImage()"></v-img>
-      <v-card-title primary-title>
+
+      <v-img aspect-ratio="1" :src="getImage()"></v-img>
+
+      <v-card-title primary-title size="100%">
         <div>
           <h3 class="headline mb-0">{{name}}</h3>
-          <div>{{description}}</div>
         </div>
       </v-card-title>
 
+      <v-card-text>
+        <div>{{description}}</div>
+      </v-card-text>
+
       <v-card-actions>
-        <div class="text-xs-center">
-          <v-menu offset-y>
-            <template v-slot:activator="{ on }">
-              <v-btn color="primary" dark v-on="on">RSVP</v-btn>
-            </template>
-            <v-list>
-              <v-list-tile v-for="(item, index) in items" :key="index">
-                <v-list-tile-title @click="sendAttendence(item.title)">{{ item.title }}</v-list-tile-title>
-              </v-list-tile>
-            </v-list>
-          </v-menu>
-        </div>
-        <v-btn color="secondary" dark @click="getDetails()">Details</v-btn>
+        <v-container>
+          
+          <v-flex lg6 sm6>
+            <v-menu offset-y>
+              <template v-slot:activator="{ on }">
+                <v-btn color="primary" dark v-on="on">RSVP</v-btn>
+              </template>
+              <v-list>
+                <v-list-tile v-for="(item, index) in items" :key="index">
+                  <v-list-tile-title @click="sendAttendence(item.title)">{{ item.title }}</v-list-tile-title>
+                </v-list-tile>
+              </v-list>
+            </v-menu>
+          </v-flex>
+
+          <v-flex lg6 sm6>
+            <v-btn color="secondary" dark @click="getDetails()">Details</v-btn>
+          </v-flex>
+        </v-container>
       </v-card-actions>
+
     </v-card>
   </v-hover>
 </template>
@@ -42,7 +54,8 @@ export default {
   },
   data() {
     return {
-      items: [{ title: "Going" }, { title: "Not Going" }]
+      items: [{ title: "Going" }, { title: "Not Going" }],
+      index: ""
     };
   },
   methods: {
@@ -58,9 +71,7 @@ export default {
       });
     },
     getImage: function() {
-      let index = Math.floor(Math.random() * Math.floor(5)) + 1;
-      index = index.toString();
-      return require(`../assets/meeting1.jpg`);
+      return require(`../assets/meeting${this.index}.jpg`);
     },
     getDetails: function() {
       let name = this.name;
@@ -68,6 +79,9 @@ export default {
         path: `/events/${name}/${this.id}`
       });
     }
+  },
+  mounted() {
+    this.index = (Math.floor(Math.random() * Math.floor(5)) + 1).toString();
   }
 };
 </script>

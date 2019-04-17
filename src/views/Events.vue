@@ -45,9 +45,9 @@ export default {
   },
   data(){
     return{
-      rowsPerPageItems: [4, 8, 12],
+      rowsPerPageItems: [6, 12, 24],
       pagination: {
-        rowsPerPage: 4
+        rowsPerPage: 6
       },
       events: [1,2,3,4,5]
     }
