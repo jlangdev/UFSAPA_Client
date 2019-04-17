@@ -26,10 +26,10 @@
 
 
       <v-btn v-if="!isLoggedIn" flat>
-        <router-link to="/about" tag="li">Login</router-link>
+        <router-link to="/login" tag="li">Login</router-link>
       </v-btn>
       <v-btn v-if="!isLoggedIn" flat>
-        <router-link to="/about" tag="li">Register</router-link>
+        <router-link to="/register" tag="li">Register</router-link>
       </v-btn>
 
     </v-toolbar-items>

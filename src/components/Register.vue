@@ -7,7 +7,6 @@
             <v-toolbar color="orange">
               <v-toolbar-title>Register form</v-toolbar-title>
               <v-spacer></v-spacer>
-              
             </v-toolbar>
             <v-card-text>
               <v-form>
@@ -45,9 +44,18 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="orange" @click="login()">Login</v-btn>
+
+              
+
+              <v-btn color="orange" @click="register()">Register</v-btn>
             </v-card-actions>
           </v-card>
+          <v-alert
+                :value="alert"
+                type="error"
+                dismissible
+                transition="scale-transition"
+              >Passwords do not match.</v-alert>
         </v-flex>
       </v-layout>
     </v-container>
@@ -66,20 +74,30 @@ export default {
       email: "",
       password: "",
       verifiedPassword: "",
+      alert: false
     };
   },
   methods: {
-    login: function() {
+    register: function() {
+      if(this.password != this.verifiedPassword){
+        this.alert = true;
+        return;
+      }
       var instance = this;
       this.axios
-        .post("/token-auth/", {
-          username: this.username,
-          password: this.password
+        .post("/register/", {
+          username: instance.username,
+          password: instance.password,
+          email: instance.email
         })
         .then(function(response) {
-          localStorage.setItem('user',JSON.stringify(response.data.user_id))
-          localStorage.setItem('token',response.data.token);
-          instance.$router.push('events')
+          localStorage.setItem("user", JSON.stringify(response.data.user_id));
+          localStorage.setItem(
+            "profile",
+            JSON.stringify(response.data.profile_id)
+          );
+          localStorage.setItem("token", response.data.token);
+          instance.$router.push("events");
         })
         .catch(function(error) {
           console.log(error);
