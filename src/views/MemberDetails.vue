@@ -19,7 +19,7 @@
       <h1 class="display-3 font-weight-light mb-3"> About {{data.first_name}}</h1>
       
             <!-- <h3 class="headline mb-0">{{data.first_name}} {{data.last_name}}</h3> -->
-        <div class="title font-weight-light"><span class = "title font-weight-medium" >Major(s):</span> {{data.major1}} <span ml-5 v-if="data.major2"> & {{data.major2}}</span></div>
+        <div class="title font-weight-light" ><span class = "title font-weight-medium" >Major(s):</span> {{data.major1}} <span ml-5 v-if="data.major2"> & {{data.major2}}</span></div>
         <div ml-5 class="title font-weight-light mt-3 mb-5"><span class = "title font-weight-medium">Office hours: </span> {{data.office_hours}}</div>
       <div class="title font-weight-medium">
         What did you study and why?

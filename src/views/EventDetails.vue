@@ -2,7 +2,8 @@
 	<v-layout>
 		<v-flex xs12 sm12 lg6 ma-2>
 			<h3 class="display-2 font-weight-light mb-2">{{data.name}}</h3>
-			<h5  class="headline font-weight-light mb-4">{{data.date}}</h5>
+			<h5  class="headline font-weight-light mb-2">{{data.date}}</h5>
+      <h5  class="headline font-weight-light mb-4">{{data.location}}</h5>
 			<p class="body-2 font-weight-light">{{data.description}}</p>
 		</v-flex>
 	</v-layout>

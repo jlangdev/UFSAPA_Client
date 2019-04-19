@@ -2,16 +2,20 @@
   <v-hover>
     <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 8 : 2} clickable`">
 
-      <v-img aspect-ratio="1" :src="getImage()"></v-img>
+      <v-img aspect-ratio="1" :src="getImage()"></v-img >
 
-      <v-card-title primary-title size="100%">
-        <div>
-          <h3 class="headline mb-0">{{name}}</h3>
+     <!--  <div id = "tName">
+          <h3 class="headline mb-0">{{name}} </h3>
+        </div> -->
+
+      <v-card-title primary-title size="100%"  >
+        <div id = "tName">
+          <h3 class="headline mb-0">{{name}} </h3>
         </div>
       </v-card-title>
 
       <v-card-text>
-        <div>{{description}}</div>
+        <div id = "desc">{{description}}</div>
       </v-card-text>
 
       <v-card-actions>
@@ -20,7 +24,7 @@
           <v-flex lg6 sm6>
             <v-menu offset-y>
               <template v-slot:activator="{ on }">
-                <v-btn color="primary" dark v-on="on">RSVP</v-btn>
+                <v-btn color="red lighten-1 " dark v-on="on">RSVP</v-btn>
               </template>
               <v-list>
                 <v-list-tile v-for="(item, index) in items" :key="index">
@@ -31,7 +35,7 @@
           </v-flex>
 
           <v-flex lg6 sm6>
-            <v-btn color="secondary" dark @click="getDetails()">Details</v-btn>
+            <v-btn color="brown darken-2" dark @click="getDetails()">Details</v-btn>
           </v-flex>
         </v-container>
       </v-card-actions>
@@ -71,7 +75,7 @@ export default {
       });
     },
     getImage: function() {
-      return require(`../assets/meeting${this.index}.jpg`);
+      return require(`../assets/meeting1.jpg`);
     },
     getDetails: function() {
       let name = this.name;
@@ -85,3 +89,19 @@ export default {
   }
 };
 </script>
+
+<style>
+  #desc{
+    overflow: hidden;
+    max-height: 20px;
+    text-overflow: ellipsis; 
+  }
+  #tName{
+    height: 30px;
+    text-overflow: ellipsis; 
+    margin-bottom: 1em;
+    /*overflow: hidden;*/
+    /*white-space: nowrap; */
+    /*display: block;*/
+  }
+</style>

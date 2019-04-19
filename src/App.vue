@@ -1,8 +1,8 @@
 <template>
   <v-app id="app">
     <NavBar></NavBar>
-    <v-content>
-    <v-container>
+    <v-content id = "test">
+    <v-container >
     <router-view/>
     </v-container>
     </v-content>
@@ -24,7 +24,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, Nunito, sans-serif;
+  font-family: Nunito,'Avenir', Helvetica, Arial,  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -33,6 +33,9 @@ Footer {
  position: absolute;
  bottom: 0;
  width: 100%;
+}
+#test{
+  background-color: #fffaf0;
 }
 
 

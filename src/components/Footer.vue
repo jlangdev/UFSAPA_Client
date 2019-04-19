@@ -3,13 +3,14 @@
     absolute
     dark
     height="auto"
+    color = 'teal accent-1'
   >
     <v-card
       class="flex"
       flat
       tile
     >
-      <v-card-title class="blue">
+      <v-card-title class="red accent-2">
         <strong class="subheading">Get connected with us on social networks!</strong>
 
         <v-spacer></v-spacer>

@@ -73,10 +73,20 @@
 
 <script>
 import moment from 'moment'
+ const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+  var date1 = new Date();
+  var currentDate = date1.getFullYear().toString() + "-" + (date1.getMonth() + 1).toString()+ "-"  + date1.getDate().toString();
+  currentDate = monthNames[date1.getMonth()];
+  console.log(currentDate);
+  //currentDate = moment(currentDate).format('MM');
+  
+  //console.log(moment(currentDate).format('MM'));
   export default {
     data: () => ({
       type: 'month',
-      start: '2019-01-01',
+      start: currentDate,
       end: '2019-01-06',
       data: {},
       today: '2019-01-08',

@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar app>
+  <v-toolbar app color = '#CAEBF2'>
     <v-toolbar-side-icon></v-toolbar-side-icon>
     <v-toolbar-title class = "title">UFSAPA</v-toolbar-title>
     <v-spacer></v-spacer>

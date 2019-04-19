@@ -16,7 +16,7 @@
           xs12
           sm6
           md4
-          lg2
+          lg3
         >
     <MemberCard 
     :first_name="props.item.first_name"
