@@ -104,7 +104,8 @@ export default {
   mounted() {
     let instance = this;
     let userId = localStorage.user;
-    this.axios.patch(`/profile/update/${userId}/`).then(res => {
+    let profileId = localStorage.profile;
+    this.axios.patch(`/profile/${profileId}/`).then(res => {
       question1: instance.question1;
     });
   }
