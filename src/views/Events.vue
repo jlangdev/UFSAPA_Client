@@ -5,7 +5,7 @@
   <v-btn 
   @click="getCalendar()"
   id = "calendarView" 
-  color = "light-blue darken-3" 
+  color = "blue darken-3" 
   class="white--text">Calendar View</v-btn>
 
     <v-data-iterator
