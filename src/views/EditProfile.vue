@@ -20,7 +20,7 @@
         <!--Question 2-->
         <v-text-field v-model="question2" :counter="100" label="Question 2"></v-text-field>
         <!--Question 3-->
-        <v-text-field v-model="question1" :counter="100" label="Question 3"></v-text-field>
+        <v-text-field v-model="question3" :counter="100" label="Question 3"></v-text-field>
         <!--Question 4-->
         <v-text-field v-model="question4" :counter="100" label="Question 4"></v-text-field>
         <!--Question 5-->
@@ -85,6 +85,15 @@ export default {
   methods: {
     submit() {
       this.$v.$touch();
+      if (this.checkbox == false) {
+        return;
+      }
+      let instance = this;
+      let userId = localStorage.user;
+      let profileId = localStorage.profile;
+      this.axios
+        .patch(`/profile/${profileId}/`, { question1: instance.question1 })
+        .then(res => {});
     },
     clear() {
       this.$v.$reset();
@@ -100,14 +109,6 @@ export default {
       this.officehours = "";
       this.checkbox = false;
     }
-  },
-  mounted() {
-    let instance = this;
-    let userId = localStorage.user;
-    let profileId = localStorage.profile;
-    this.axios.patch(`/profile/${profileId}/`).then(res => {
-      question1: instance.question1;
-    });
   }
 };
 </script>
