@@ -65,7 +65,7 @@
                 <v-btn color="primary" dark>
                   <router-link :to="getLink(event.id)" tag="v-btn">Enter Passcode</router-link>
                 </v-btn>
-                <v-btn color="error" dark>Not Attending</v-btn>
+                <v-btn color="error" @click="getRidOf(event.attendanceId)" dark>Not Attending</v-btn>
               </v-card-actions>
             </v-card>
           </div>
@@ -117,6 +117,14 @@ export default {
     enableEdit: function() {},
     getLink: function(id) {
       return `/passcode/${id}/`;
+    },
+    getRidOf(event){
+      let instance = this
+      let id = event
+      this.axios.delete(`/attendance/${event}/`).then( () => {
+        instance.myEvents.filter(event => event.id != id)
+        location.reload()
+      })
     }
   },
   mounted() {
@@ -137,8 +145,11 @@ export default {
         for (let i = 0; i < instance.events.length; i++) {
           for (let j = 0; j < instance.attendance.length; j++) {
             if (instance.events[i].id == instance.attendance[j].event) {
-              instance.myEvents.push(instance.events[i]);
-              continue;
+              if(instance.attendance[j].status == "Going"){
+                instance.events[i].attendanceId = instance.attendance[j].id
+                instance.myEvents.push(instance.events[i]);
+                continue;
+              }
             }
           }
         }

@@ -69,9 +69,10 @@ export default {
         event: this.id.toString(),
         status: status
       };
-      console.log(attendance);
+      let instance = this
       this.axios.post("/attendance/", attendance).then(res => {
-        console.log(res);
+        instance.$emit('sent')
+        
       });
     },
     getImage: function() {

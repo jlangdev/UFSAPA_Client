@@ -1,13 +1,24 @@
 <template>
-  
-
 <v-container fluid grid-list-md>
   <v-btn 
   @click="getCalendar()"
   id = "calendarView" 
   color = "blue darken-3" 
   class="white--text">Calendar View</v-btn>
-
+  <v-snackbar
+      v-model="snackbar"
+      timeout="5000"
+      top
+    >
+      RSVP Submitted!
+      <v-btn
+        color="pink"
+        flat
+        @click="snackbar = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
     <v-data-iterator
       :items="events"
       :rows-per-page-items="rowsPerPageItems"
@@ -24,12 +35,14 @@
           lg2
         >
     <EventCard 
+    @sent='snack()'
     :name="props.item.name"
     :description="props.item.description"
     :id="props.item.id"></EventCard>
         </v-flex>
         </template>
         </v-data-iterator>
+  
         </v-container>
 
 </template>
@@ -49,7 +62,8 @@ export default {
       pagination: {
         rowsPerPage: 6
       },
-      events: [1,2,3,4,5]
+      events: [],
+      snackbar: false
     }
   },
   methods:{
@@ -58,6 +72,9 @@ export default {
       this.$router.push({
         path: `/calendar`
     })
+    },
+    snack: function(){
+      this.snackbar = true
     }
   },
   mounted(){
