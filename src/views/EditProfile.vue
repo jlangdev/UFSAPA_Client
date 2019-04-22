@@ -4,27 +4,27 @@
     <p class="subheading">Click the checkbox and submit when everything is complete.</p>
     <v-layout></v-layout>
     <v-flex m6 s8 xs8>
-      <form>
+      <form id="editForm">
         <!--Major-->
-        <v-text-field v-model="major1" :counter="20" label="Major 1"></v-text-field>
+        <v-text-field v-model="major1" id="major1" :counter="20" label="Major 1"></v-text-field>
         <!--Major 2-->
-        <v-text-field v-model="major2" :counter="20" label="Major 2 (If applicable)"></v-text-field>
+        <v-text-field v-model="major2" id="major2" :counter="20" label="Major 2 (If applicable)"></v-text-field>
         <!--Minor 1-->
-        <v-text-field v-model="minor1" :counter="15" label="Minor 1 (If applicable)"></v-text-field>
+        <v-text-field v-model="minor1" id="minor1" :counter="15" label="Minor 1 (If applicable)"></v-text-field>
         <!--Minor 2-->
-        <v-text-field v-model="minor2" :counter="15" label="Minor 2 (If applicable)"></v-text-field>
+        <v-text-field v-model="minor2" id="minor2" :counter="15" label="Minor 2 (If applicable)"></v-text-field>
         <!--Office Hours-->
-        <v-text-field v-model="officehours" :counter="100" label="Office Hours"></v-text-field>
+        <v-text-field v-model="officehours" id="officehours" :counter="100" label="Office Hours"></v-text-field>
         <!--Question 1-->
-        <v-text-field v-model="question1" :counter="100" label="Question 1"></v-text-field>
+        <v-text-field v-model="question1" id="question1" :counter="100" label="Question 1"></v-text-field>
         <!--Question 2-->
-        <v-text-field v-model="question2" :counter="100" label="Question 2"></v-text-field>
+        <v-text-field v-model="question2" id="question2" :counter="100" label="Question 2"></v-text-field>
         <!--Question 3-->
-        <v-text-field v-model="question3" :counter="100" label="Question 3"></v-text-field>
+        <v-text-field v-model="question3" id="question3" :counter="100" label="Question 3"></v-text-field>
         <!--Question 4-->
-        <v-text-field v-model="question4" :counter="100" label="Question 4"></v-text-field>
+        <v-text-field v-model="question4" id="question4" :counter="100" label="Question 4"></v-text-field>
         <!--Question 5-->
-        <v-text-field v-model="question5" :counter="100" label="Question 5"></v-text-field>
+        <v-text-field v-model="question5" id="question5" :counter="100" label="Question 5"></v-text-field>
         <!--Office Hours-->
 
         <v-checkbox
@@ -83,18 +83,6 @@ export default {
   },
 
   methods: {
-    submit() {
-      this.$v.$touch();
-      if (this.checkbox == false) {
-        return;
-      }
-      let instance = this;
-      let userId = localStorage.user;
-      let profileId = localStorage.profile;
-      this.axios
-        .patch(`/profile/${profileId}/`, { question1: instance.question1 })
-        .then(res => {});
-    },
     clear() {
       this.$v.$reset();
       this.major1 = "";
@@ -108,6 +96,32 @@ export default {
       this.question5 = "";
       this.officehours = "";
       this.checkbox = false;
+    },
+    submit() {
+      this.$v.$touch();
+      if (this.checkbox == false) {
+        return;
+      }
+      let instance = this;
+      let userId = localStorage.user;
+      let profileId = localStorage.profile;
+      var elements = document.getElementById("editForm").elements;
+
+      for (var i = 0, element; (element = elements[i++]); ) {
+        var holdData;
+        var myJSON;
+        if (element.type === "text" && element.value != "") {
+          holdData = {};
+          holdData[element.id] = element.value.toString();
+          myJSON = JSON.stringify(holdData);
+
+          console.log(myJSON);
+        }
+      }
+
+      this.axios.patch(`/profiles/${profileId}/`, { myJSON }).then(res => {
+        this.clear();
+      });
     }
   }
 };

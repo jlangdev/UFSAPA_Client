@@ -6,7 +6,7 @@
     <v-layout row>
       <v-flex md4 xs12 sm12>
         <v-avatar size="200">
-          <img src="../assets/jlang.jpg" alt="profile pic" class="grey lighten-5">
+          <img src="../assets/placeholder.png" alt="profile pic" class="grey lighten-5">
         </v-avatar>
       </v-flex>
       <v-flex md8 xs12 sm12 mt-5>
@@ -116,7 +116,7 @@ export default {
   methods: {
     enableEdit: function() {},
     getLink: function(id) {
-      return `/passcode/${id}`;
+      return `/passcode/${id}/`;
     }
   },
   mounted() {
