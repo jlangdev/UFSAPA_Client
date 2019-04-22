@@ -22,8 +22,8 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "events",
-      component: Events
+      name: "members",
+      component: Members
     },
     {
       path: "/events/:name/:id",
