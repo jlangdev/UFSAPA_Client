@@ -64,9 +64,7 @@ export default {
           localStorage.setItem('user',JSON.stringify(response.data.user_id));
           localStorage.setItem('profile', JSON.stringify(response.data.profile_id));
           localStorage.setItem('token',response.data.token);
-          instance.$emit('loggedIn')
           instance.$router.push('events')
-          location.reload()
         })
         .catch(function(error) {
           console.log(error);

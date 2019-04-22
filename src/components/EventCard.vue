@@ -75,7 +75,7 @@ export default {
       });
     },
     getImage: function() {
-      return require(`../assets/meeting${this.index}.jpg`);
+      return require(`../assets/meeting1.jpg`);
     },
     getDetails: function() {
       let name = this.name;

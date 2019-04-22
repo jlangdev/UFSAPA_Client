@@ -22,6 +22,8 @@
       <v-btn v-if="isLoggedIn" @click='logOut()' flat>
         <router-link to="/login" tag="li">Log Out</router-link>
       </v-btn>
+ 
+
 
       <v-btn v-if="!isLoggedIn" flat>
         <router-link to="/login" tag="li">Login</router-link>
@@ -50,15 +52,11 @@ export default {
       delete localStorage.user
       delete localStorage.profile
       delete localStorage.token
-      location.reload()
-
     }
   },
   mounted(){
     if(localStorage.token){
       this.isLoggedIn = true
-    }else{
-      this.isLoggedIn = false
     }
   }
 };
