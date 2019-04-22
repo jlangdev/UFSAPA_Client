@@ -4,8 +4,8 @@
       <v-layout align-center justify-center>
         <v-flex xs12 sm8 md4>
           <v-card class="elevation-12">
-            <v-toolbar color="red lighten-1" class="white--text">
-              <v-toolbar-title>Login</v-toolbar-title>
+            <v-toolbar color="orange">
+              <v-toolbar-title>Login form</v-toolbar-title>
               <v-spacer></v-spacer>
               
             </v-toolbar>
@@ -30,7 +30,7 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="red lighten-1"class="white--text" @click="login()">Login</v-btn>
+              <v-btn color="orange" @click="login()">Login</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -64,7 +64,9 @@ export default {
           localStorage.setItem('user',JSON.stringify(response.data.user_id));
           localStorage.setItem('profile', JSON.stringify(response.data.profile_id));
           localStorage.setItem('token',response.data.token);
+          instance.$emit('loggedIn')
           instance.$router.push('events')
+          location.reload()
         })
         .catch(function(error) {
           console.log(error);

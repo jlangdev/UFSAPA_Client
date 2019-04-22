@@ -3,6 +3,7 @@
     <v-flex xs12 sm12 lg6 ma-2>
      
       <v-card>
+          
         <!-- <v-card-title primary-title>
           <div>
             <h3 class="headline mb-0">{{data.first_name}} {{data.last_name}}</h3>
@@ -52,8 +53,7 @@ export default {
   },
   data() {
     return {
-      data: {},
-      program:{}
+      data: {}
     };
   },
   methods: {
@@ -72,10 +72,6 @@ export default {
     console.log(id);
     this.axios.get(`/profiles/${id}/`).then(res => {
       instance.data = res.data;
-    });
-    this.axios.get(`/studyAbroadProgram`).then(res => {
-      instance.program = res.data;
-      console.log(res.data);
     });
   }
 };

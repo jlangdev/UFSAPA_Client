@@ -3,7 +3,7 @@
     <NavBar></NavBar>
     <v-content id = "test">
     <v-container >
-    <router-view/>
+    <router-view @loggedIn="handleLogin"/>
     </v-container>
     </v-content>
     <Footer></Footer>
@@ -18,6 +18,11 @@ export default {
   components: {
     NavBar,
     Footer
+  },
+  methods:{
+    handleLogin: function(){
+      console.log('logged in')
+    }
   }
 }
 </script>
