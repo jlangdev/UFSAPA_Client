@@ -78,6 +78,8 @@
 
 
 <script>
+  
+
 export default {
   name: "myProfile",
   components: {},
@@ -117,7 +119,13 @@ export default {
     enableEdit: function() {},
     getLink: function(id) {
       return `/passcode/${id}`;
-    }
+    },
+    //  editProfile: function(){
+    //   let name = this.first_name + this.last_name
+    //   this.$router.push({
+    //     path: `/members/${name}/${this.id}`,
+    // })
+    // }
   },
   mounted() {
     let instance = this;

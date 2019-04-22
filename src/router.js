@@ -82,7 +82,9 @@ export default new Router({
 
     {
       path: "/members/:name/:id",
+      name: "MemberDetails",
       component: MemberDetails
+
     },
     {
       path: "/example",
