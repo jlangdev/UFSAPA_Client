@@ -106,7 +106,7 @@ export default {
       let userId = localStorage.user;
       let profileId = localStorage.profile;
       var elements = document.getElementById("editForm").elements;
-
+      let model = new FormData()
       for (var i = 0, element; (element = elements[i++]); ) {
         var holdData;
         var myJSON;
@@ -114,14 +114,17 @@ export default {
           holdData = {};
           holdData[element.id] = element.value.toString();
           myJSON = JSON.stringify(holdData);
+          model.append(element.id, element.value);
 
           console.log(myJSON);
         }
       }
 
-      this.axios.patch(`/profiles/${profileId}/`, { myJSON }).then(res => {
+      this.axios.patch(`/profiles/${profileId}/`, model ).then(res => {
         this.clear();
       });
+      this.$router.push('/profile')
+      location.reload()
     }
   }
 };
