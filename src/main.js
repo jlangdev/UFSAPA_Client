@@ -14,7 +14,7 @@ axios.interceptors.request.use(function(config) {
   }
   return config;
 });
-axios.defaults.baseURL = 'http://zachf632.pythonanywhere.com/api'
+axios.defaults.baseURL = 'https://zachf632.pythonanywhere.com/api'
 
 Vue.use(VueAxios, axios);
 Vue.use(VueAxios, axios);
