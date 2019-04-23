@@ -4,7 +4,7 @@
       <v-layout align-center justify-center>
         <v-flex xs12 sm8 md4>
           <v-card class="elevation-12">
-            <v-toolbar color="orange">
+            <v-toolbar color="red lighten-1">
               <v-toolbar-title>Register form</v-toolbar-title>
               <v-spacer></v-spacer>
             </v-toolbar>
@@ -47,7 +47,7 @@
 
               
 
-              <v-btn color="orange" @click="register()">Register</v-btn>
+              <v-btn color="red lighten-1" @click="register()">Register</v-btn>
             </v-card-actions>
           </v-card>
           <v-alert

@@ -4,7 +4,7 @@
       <v-layout align-center justify-center>
         <v-flex xs12 sm8 md4>
           <v-card class="elevation-12">
-            <v-toolbar color="orange">
+            <v-toolbar color="red lighten-1">
               <v-toolbar-title>Login form</v-toolbar-title>
               <v-spacer></v-spacer>
               
@@ -30,7 +30,7 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="orange" @click="login()">Login</v-btn>
+              <v-btn color="red lighten-1" @click="login()">Login</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
