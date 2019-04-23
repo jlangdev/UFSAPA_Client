@@ -20,7 +20,8 @@
       
             <!-- <h3 class="headline mb-0">{{data.first_name}} {{data.last_name}}</h3> -->
         <div class="title font-weight-light" ><span class = "title font-weight-medium" >Major(s):</span> {{data.major1}} <span ml-5 v-if="data.major2"> & {{data.major2}}</span></div>
-        <div ml-5 class="title font-weight-light mt-3 mb-5"><span class = "title font-weight-medium">Office hours: </span> {{data.office_hours}}</div>
+        <div ml-5 class="title font-weight-light mt-3"><span class = "title font-weight-medium">Office hours: </span> {{data.office_hours}}</div>
+        <div ml-5 class="title font-weight-light mt-3 mb-5"><span class = "title font-weight-medium">Program: </span> {{program.name}}</div>
       <div class="title font-weight-medium">
         What did you study and why?
       </div>
@@ -53,7 +54,8 @@ export default {
   },
   data() {
     return {
-      data: {}
+      data: {},
+      program:{}
     };
   },
   methods: {
@@ -72,6 +74,15 @@ export default {
     console.log(id);
     this.axios.get(`/profiles/${id}/`).then(res => {
       instance.data = res.data;
+    });
+     this.axios.get(`/studyabroadprogram/user/${id}`).then(res => {
+      let allPrograms = "";
+      for(var i = 0; i < res.data.length; i++){
+        allPrograms += res.data[i].name + ", ";
+      }
+      allPrograms = allPrograms.substring(0, allPrograms.length - 2);
+      instance.program = res.data;
+      instance.program.name = allPrograms;
     });
   }
 };
