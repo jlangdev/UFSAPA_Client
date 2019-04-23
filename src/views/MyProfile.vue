@@ -42,34 +42,37 @@
       </v-flex>
     </v-layout>
     <v-layout>
-      <v-flex xs6 sm6 md4 ml-3 grid-list-s>
+      <v-flex>
         <p class="display-1">Events Attending</p>
-
-        <div v-for="(event, key) in myEvents" :key="key">
-          <div v-if="event.is_active === true">
-            <v-card color="#577284" class="white--text">
-              <v-card-title primary-title>
-                <div>
-                  <div class="headline">{{event.name}}</div>
-                  <br>
-                  <span>Descripion: {{event.description}}</span>
-                  <br>
-                  <span>Date: {{event.date.toLocaleString()}}</span>
-                  <br>
-                  <span>Point Value: {{event.point_value}}</span>
-                  <br>
-                  <span>Mandatory: {{event.is_mandatory}}</span>
-                </div>
-              </v-card-title>
-              <v-card-actions>
-                <v-btn color="primary" dark>
-                  <router-link :to="getLink(event.id)" tag="v-btn">Enter Passcode</router-link>
-                </v-btn>
-                <v-btn color="error" @click="getRidOf(event.attendanceId)" dark>Not Attending</v-btn>
-              </v-card-actions>
-            </v-card>
-          </div>
-        </div>
+        <v-container grid-list-s>
+          <v-layout row wrap>
+            <div v-for="(event, key) in myEvents" :key="key">
+              <div v-if="event.is_active === true">
+                <v-card color="#577284" class="white--text">
+                  <v-card-title primary-title>
+                    <v-flex md12 xs9 class="px-0">
+                      <div class="headline">{{event.name}}</div>
+                      <br>
+                      <span>Descripion: {{event.description}}</span>
+                      <br>
+                      <span>Date: {{event.date}}</span>
+                      <br>
+                      <span>Point Value: {{event.point_value}}</span>
+                      <br>
+                      <span>Mandatory: {{event.is_mandatory}}</span>
+                    </v-flex>
+                  </v-card-title>
+                  <v-card-actions>
+                    <v-btn color="primary" dark>
+                      <router-link :to="getLink(event.id)" tag="v-btn">Enter Passcode</router-link>
+                    </v-btn>
+                    <v-btn color="error" @click="getRidOf(event.attendanceId)" dark>Not Attending</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </div>
+            </div>
+          </v-layout>
+        </v-container>
         <!-- <h1>All events {{eventsData}}</h1>-->
       </v-flex>
     </v-layout>
@@ -78,6 +81,7 @@
 
 
 <script>
+import moment from "moment";
 export default {
   name: "myProfile",
   components: {},
@@ -118,13 +122,13 @@ export default {
     getLink: function(id) {
       return `/passcode/${id}/`;
     },
-    getRidOf(event){
-      let instance = this
-      let id = event
-      this.axios.delete(`/attendance/${event}/`).then( () => {
-        instance.myEvents.filter(event => event.id != id)
-        location.reload()
-      })
+    getRidOf(event) {
+      let instance = this;
+      let id = event;
+      this.axios.delete(`/attendance/${event}/`).then(() => {
+        instance.myEvents.filter(event => event.id != id);
+        location.reload();
+      });
     }
   },
   mounted() {
@@ -145,8 +149,11 @@ export default {
         for (let i = 0; i < instance.events.length; i++) {
           for (let j = 0; j < instance.attendance.length; j++) {
             if (instance.events[i].id == instance.attendance[j].event) {
-              if(instance.attendance[j].status == "Going"){
-                instance.events[i].attendanceId = instance.attendance[j].id
+              instance.events[i].date = moment(instance.events[i].date).format(
+                "MM/DD/YYYY h:mm a"
+              );
+              if (instance.attendance[j].status == "Going") {
+                instance.events[i].attendanceId = instance.attendance[j].id;
                 instance.myEvents.push(instance.events[i]);
                 continue;
               }
