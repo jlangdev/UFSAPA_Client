@@ -14,7 +14,7 @@ axios.interceptors.request.use(function(config) {
   }
   return config;
 });
-axios.defaults.baseURL = process.env.BASE_URL ? process.env.BASE_URL : 'http://localhost:8000';
+axios.defaults.baseURL = 'http://zachf632.pythonanywhere.com/api'
 
 Vue.use(VueAxios, axios);
 Vue.use(VueAxios, axios);
