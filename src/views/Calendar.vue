@@ -1,5 +1,11 @@
 <template>
   <v-layout wrap>
+    <v-btn @click="goBack()" color = "blue darken-3" class="white--text">
+        <v-icon dark left>
+          keyboard_arrow_left
+        </v-icon>
+        Back to Events
+      </v-btn>
     <v-flex sm4 xs12 class="text-sm-left text-xs-center">
       <v-btn @click="$refs.calendar.prev()">
         <v-icon dark left>
@@ -107,7 +113,13 @@ import moment from 'moment'
     methods: {
       open (event) {
         alert(event.title)
-      }
+      },
+      goBack: function() {
+      let name = this.name;
+      this.$router.push({
+        path: `/events/`
+      });
+    }
     },
     mounted() {
     let instance = this;
@@ -119,7 +131,6 @@ import moment from 'moment'
   }
   }
 </script>
-
 
 <style lang="stylus" scoped>
   .my-event {
